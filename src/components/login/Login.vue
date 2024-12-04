@@ -1,17 +1,27 @@
 <script setup lang="ts">
-import { defineEmits, InputHTMLAttributes } from 'vue';
-const emit = defineEmits(['login'])
+import { defineEmits, InputHTMLAttributes, ref } from 'vue';
+import { invoke } from '@tauri-apps/api/core'
+import { useEmployeeStore } from '../../stores/employee'
+
+const employeeStore = useEmployeeStore()
+const emit = defineEmits(['login']);
+const error = ref("")
 
 const validate = () => {
-    console.log("validating...");
-    const username: HTMLInputElement | null = document.getElementById('username_login') as HTMLInputElement
+    const employee_id: HTMLInputElement | null = document.getElementById('employee_id_login') as HTMLInputElement
     const password: HTMLInputElement | null = document.getElementById('password_login') as HTMLInputElement
 
-    console.log(`Vals: ${username?.value}, ${password?.value}`);
-
-
-    if (username?.value && password?.value) {
-        emit('login')
+    if (employee_id?.value && password?.value) {
+        let response;
+            let numericId = parseInt(employee_id.value)
+            invoke < Number > ('login', { employeeId: numericId })
+                .then((tauriResponse) => {
+                    employeeStore.login(tauriResponse)
+                    emit('login')
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
     }
 }
 
@@ -25,9 +35,12 @@ const validate = () => {
             </div>
             <br>
             <div class="login">
-                <input id="username_login" type="text" placeholder="username" name="user" value=""><br>
-                <input id="password_login" type="password" placeholder="password" name="password" value=""><br>
+                <input id="employee_id_login" type="text" placeholder="Mitarbeiter-ID" name="employee_id" value=""><br>
+                <input id="password_login" type="password" placeholder="Passwort" name="password" value=""><br>
                 <input type="button" value="Login" @click="validate()">
+                <p class="text-warning" id="error">
+                    {{ error }}
+                </p>
             </div>
         </div>
     </div>

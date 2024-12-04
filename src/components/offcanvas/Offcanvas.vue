@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import { routes } from '../../routes'
+import { useEmployeeStore } from '../../stores/employee'
 
 const props = defineProps({
     currentRouteName: {
@@ -8,6 +9,8 @@ const props = defineProps({
         required: true
     }
 })
+
+const employeeStore = useEmployeeStore()
 </script>
 
 <template>
@@ -19,7 +22,6 @@ const props = defineProps({
         </div>
         <hr>
         <div class="offcanvas-body d-flex flex-column justify-content-between">
-
             <div>
                 <div>
                     <p class="lead">Hier finden sich die derzeitig vorhandenen Module an</p>
@@ -37,8 +39,7 @@ const props = defineProps({
             <div>
                 <hr>
                 <div class="btn-group w-100" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="btn btn-success">Benutzer wechseln</button>
-                    <button type="button" class="btn btn-outline-danger">Ausloggen</button>
+                    <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" @click="employeeStore.logout" class="btn btn-success">Benutzer wechseln</button>
                 </div>
             </div>
         </div>

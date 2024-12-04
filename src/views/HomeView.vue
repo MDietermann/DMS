@@ -4,18 +4,15 @@ import Login from "../components/login/Login.vue";
 import { acceptedFileTypesExport, acceptedFileTypesImport } from "../mock/filetypes";
 import { dbMock } from "../mock/db-mock";
 import DatabaseModule from "../components/database-module/DatabaseModule.vue";
+import { useEmployeeStore } from "../stores/employee"
 
-const loggedIn = ref(true);
-const userData = {
-    ID: 1,
-    Vorname: "Marvin",
-    Nachname: "Dietermann",
-    Abteilung: "Software-Entwicklung",
-};
+const employeeStore = useEmployeeStore()
+const loggedIn = ref(employeeStore.loggedIn)
 
-watch(loggedIn, (newVal) => {
-    console.log(newVal);
-});
+watch(() => employeeStore.loggedIn,
+    () => {
+        loggedIn.value = employeeStore.loggedIn
+    })
 
 const validDataTypes = (typesArray) => {
     let output = "";
