@@ -1,0 +1,25 @@
+{
+    "mysql": [
+        { "ip": "192.168.0.1", "user": "root", "tables": ["shop", "shared", "timetable"]},
+        { "ip": "192.168.0.1", "user": "developer", "tables": ["shop", "shared"]},
+        { "ip": "192.168.0.1", "user": "user1", "tables": ["shared"]}
+    ],
+
+    "postgresql": [
+        { "ip": "192.168.0.1", "user": "root", "tables": ["shop", "shared", "timetable"]},
+        { "ip": "192.168.0.1", "user": "developer", "tables": ["shop", "shared"]},
+        { "ip": "192.168.0.1", "user": "user1", "tables": ["shared"]}
+    ],
+
+    "mariadb": [
+        { "ip": "192.168.0.1", "user": "root", "tables": ["shop", "shared", "timetable"]},
+        { "ip": "192.168.0.1", "user": "developer", "tables": ["shop", "shared"]},
+        { "ip": "192.168.0.1", "user": "user1", "tables": ["shared"]}
+    ],
+
+    "sqlserver": [
+        { "ip": "192.168.0.1", "user": "root", "tables": ["shop", "shared", "timetable"]},
+        { "ip": "192.168.0.1", "user": "developer", "tables": ["shop", "shared"]},
+        { "ip": "192.168.0.1", "user": "user1", "tables": ["shared"]}
+    ]
+}
