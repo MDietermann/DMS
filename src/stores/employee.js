@@ -13,14 +13,21 @@ export const useEmployeeStore = defineStore("employee", {
     }),
     actions: {
         login(employee) {
-            this.loggedIn = true
+            if (employee.id === -1) {
+                return {
+                    code: 401,
+                    message: "Employee not found",
+                };
+            }
+            this.loggedIn = true;
             this.employee = {
                 id: employee.id,
-                first_name: employee['first_name'],
-                last_name: employee['last_name'],
-                email: employee['email'],
-                position: employee['position']
-            }
+                firstName: employee.firstName,
+                lastName: employee.lastName,
+                email: employee.email,
+                position: employee.position,
+            };
+            return { code: 200 };
         },
         logout() {
             this.employee = null

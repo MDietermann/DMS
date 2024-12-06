@@ -7,23 +7,41 @@ const employeeStore = useEmployeeStore()
 const emit = defineEmits(['login']);
 const error = ref("")
 
-const validate = () => {
-    const employee_id: HTMLInputElement | null = document.getElementById('employee_id_login') as HTMLInputElement
-    const password: HTMLInputElement | null = document.getElementById('password_login') as HTMLInputElement
-
-    if (employee_id?.value && password?.value) {
-        let response;
-            let numericId = parseInt(employee_id.value)
-            invoke < Number > ('login', { employeeId: numericId })
-                .then((tauriResponse) => {
-                    employeeStore.login(tauriResponse)
-                    emit('login')
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+/**
+ * Handles the login process.
+ * Fetches the current values from the input fields, makes a call to the tauri login function
+ * with the given employee id, and then calls the login function from the employee store.
+ * The result of this call is then evaluated and if it's a successful login, the login event is emitted.
+ * Otherwise, an error message is set.
+ */
+const validateLogin = () => {
+    // Get input elements for employee ID and password
+    const employeeIdInput = document.getElementById('employee_id_login') as HTMLInputElement;
+    const passwordInput = document.getElementById('password_login') as HTMLInputElement;
+    // Check if both input fields have values
+    if (employeeIdInput.value && passwordInput.value) {
+        // Parse the employee ID into a number
+        const numericId = parseInt(employeeIdInput.value);
+        // Call the tauri login function with the employee ID
+        invoke<number>('login', { employeeId: numericId })
+            .then((responseCode) => {
+                // Call the login function from the employee store with the response code
+                const result = employeeStore.login(responseCode);
+                // Check if the login was successful
+                if (result.Code === 200) {
+                    // Emit the login event
+                    emit('login');
+                } else {
+                    // Set the error message if login was unsuccessful
+                    error.value = result.Message || 'Unknown error occurred during login.';
+                }
+            })
+            .catch((err) => {
+                // Log any errors that occur during the process
+                console.error(err);
+            });
     }
-}
+};
 
 </script>
 

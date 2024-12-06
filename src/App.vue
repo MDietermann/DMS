@@ -14,12 +14,10 @@ onMounted(() => {
 })
 
 watch(route, (to) => {
-    if (employeeStore.loggedIn) {
-        currentRouteName.value = to.name
-        console.log(currentRouteName.value);
-    } else {
+    if (!employeeStore.loggedIn) {
         router.push('/')
     }
+    currentRouteName.value = to.name
 })
 
 watch(() => employeeStore.loggedIn,

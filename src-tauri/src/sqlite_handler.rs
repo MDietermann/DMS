@@ -11,6 +11,24 @@ pub struct Employee {
 }
 
 impl Employee {
+    pub fn check_password(&self, passwd: String) -> bool {
+        if self.password == passwd {
+            return true;
+        }
+        false
+    }
+
+    pub fn get_invalid_user() -> Employee {
+        Employee {
+            id: -1,
+            first_name: "".to_string(),
+            last_name: "".to_string(),
+            email: "".to_string(),
+            position: "".to_string(),
+            password: "".to_string()
+        }
+    }
+
     pub async fn get_employee_by_id(employee_id: i32) -> Result<Employee> {
         let connection = Connection::open("dms.db")?;
         let mut query = connection.prepare("SELECT * FROM employee WHERE id = ?1;")?;
