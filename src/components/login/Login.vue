@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineEmits, InputHTMLAttributes, ref } from 'vue';
+import { defineEmits, ref } from 'vue';
 import { invoke } from '@tauri-apps/api/core'
 import { useEmployeeStore } from '../../stores/employee'
 
@@ -23,8 +23,10 @@ const validateLogin = () => {
         // Parse the employee ID into a number
         const numericId = parseInt(employeeIdInput.value);
         // Call the tauri login function with the employee ID
-        invoke<number>('login', { employeeId: numericId })
+        invoke<number>('login', { employeeId: numericId, passwd: passwordInput.value })
             .then((responseCode) => {
+                console.log(responseCode);
+
                 // Call the login function from the employee store with the response code
                 const result = employeeStore.login(responseCode);
                 // Check if the login was successful
@@ -55,7 +57,7 @@ const validateLogin = () => {
             <div class="login">
                 <input id="employee_id_login" type="text" placeholder="Mitarbeiter-ID" name="employee_id" value=""><br>
                 <input id="password_login" type="password" placeholder="Passwort" name="password" value=""><br>
-                <input type="button" value="Login" @click="validate()">
+                <input type="button" value="Login" @click="validateLogin()">
                 <p class="text-warning" id="error">
                     {{ error }}
                 </p>

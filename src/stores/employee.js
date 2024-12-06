@@ -22,8 +22,8 @@ export const useEmployeeStore = defineStore("employee", {
             this.loggedIn = true;
             this.employee = {
                 id: employee.id,
-                firstName: employee.firstName,
-                lastName: employee.lastName,
+                first_name: employee.first_name,
+                last_name: employee.last_name,
                 email: employee.email,
                 position: employee.position,
             };

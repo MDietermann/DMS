@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { resolveDbName } from '../../scripts/dbResolver';
 import DatabaseTable from './database-table/DatabaseTable.vue';
-const props = defineProps({
-    databasesForRow: {
+defineProps({
+    databases: {
         type: Object,
         required: true
     },
@@ -10,8 +10,8 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="accordion container-sm section" id="accordionFlush">
-        <template v-for="(db, name) in databasesForRow">
+    <div class="accordion container-sm" id="accordionFlush">
+        <template v-for="(db, name) in databases">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     :data-bs-target="'#' + resolveDbName(name)" aria-expanded="false"
@@ -29,11 +29,4 @@ const props = defineProps({
 </template>
 
 <style lang="css" scoped>
-.section {
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-    padding: 8px;
-    border-radius: 8px;
-    margin-top: 32px;
-    margin-bottom: 32px;
-}
 </style>
