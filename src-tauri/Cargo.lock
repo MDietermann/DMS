@@ -654,12 +654,14 @@ dependencies = [
 name = "dms"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "rusqlite",
  "serde",
  "serde_json",
  "tauri",
  "tauri-build",
  "tauri-plugin-shell",
+ "thiserror 2.0.4",
  "tokio",
 ]
 

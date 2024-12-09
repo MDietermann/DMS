@@ -8,6 +8,7 @@ mod tauri_commands;
 mod ip_factory;
 mod type_caster;
 mod employee;
+mod custom_errors;
 
 #[tokio::main]
 async fn main() {
