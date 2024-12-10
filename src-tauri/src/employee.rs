@@ -1,5 +1,5 @@
-use rusqlite::{params, Connection, Error, Result};
-use crate::{custom_errors::{CommandResult, CustomError}, sqlite_handler};
+use rusqlite::{params, Connection, Result};
+use crate::{custom_errors::{self, CommandResult, CustomRusqliteErrorType}, database_handler};
 
 #[derive(Debug, serde::Serialize, serde::Deserialize)]
 pub struct Employee {
@@ -45,7 +45,7 @@ impl Employee {
         return person;
     }
 
-    pub async fn add_employee(&self) -> CommandResult<(), CustomError> {
+    pub async fn add_employee(&self) -> CommandResult<(), CustomRusqliteErrorType> {
         let connection = Connection::open("dms.db")?;
 
         let mut query = connection.prepare("SELECT * FROM employee WHERE email = ?1;")?;
@@ -61,7 +61,7 @@ impl Employee {
         })?;
 
         if let Some(next) = person_iter.next() {
-            return Err(CustomError::RusqliteError(next.unwrap_err()));
+            return Err(custom_errors::get_custom_rusqlite_errors(Some(next.unwrap_err())));
         }
 
         connection.execute(
@@ -74,7 +74,7 @@ impl Employee {
     }
 
     pub async fn get_all_employees() -> Result<Vec<Employee>> {
-        let conn = sqlite_handler::get_connection().await?;
+        let conn = database_handler::get_connection().await?;
         let mut stmt = conn.prepare("SELECT * FROM employee;")?;
 
         let mut employees = Vec::new();

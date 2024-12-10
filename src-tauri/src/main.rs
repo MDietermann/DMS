@@ -3,12 +3,19 @@
     windows_subsystem = "windows"
 )]
 
-mod sqlite_handler;
+#[path ="database_handler/mod.rs"]
+mod database_handler;
+
 mod tauri_commands;
 mod ip_factory;
 mod type_caster;
 mod employee;
+
+#[path = "custom_errors/mod.rs"]
 mod custom_errors;
+
+#[path ="database_structs/mod.rs"]
+mod database_structs;
 
 #[tokio::main]
 async fn main() {
@@ -21,5 +28,4 @@ async fn main() {
             ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
-        let _result = sqlite_handler::create().await;
 }

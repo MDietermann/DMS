@@ -1,4 +1,5 @@
-use crate::{custom_errors::{CommandResult, CustomError}, employee::Employee};
+use crate::custom_errors::{ CustomRusqliteErrorType, CommandResult, self };
+use crate::employee::Employee;
 
 #[tauri::command]
 pub async fn login(employee_id: i32, passwd: String) -> Employee {
@@ -12,17 +13,17 @@ pub async fn login(employee_id: i32, passwd: String) -> Employee {
 }
 
 #[tauri::command]
-pub async fn get_all_employees() -> CommandResult<Vec<Employee>, CustomError> {
+pub async fn get_all_employees() -> CommandResult<Vec<Employee>, CustomRusqliteErrorType> {
     match Employee::get_all_employees().await {
         Ok(employees) => Ok(employees),
-        Err(e) => Err(CustomError::RusqliteError(e)),
+        Err(e) => Err(custom_errors::get_custom_rusqlite_errors(Some(e))),
     }
 }
 
 #[tauri::command]
-pub async fn add_employee(employee: Employee) -> CommandResult<(), CustomError> {
+pub async fn add_employee(employee: Employee) -> CommandResult<(), CustomRusqliteErrorType> {
     match employee.add_employee().await {
         Ok(_) => Ok(()),
-        Err(_) => Err(CustomError::RusqliteError(rusqlite::Error::QueryReturnedNoRows)),
+        Err(e) => Err(custom_errors::get_custom_rusqlite_errors(Some(e))),
     }
 }
