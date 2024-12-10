@@ -49,7 +49,7 @@ async function testConnection() {
 
             store.addServer(selectedType.value, { ...newServer.value });
             showAddModal.value = false;
-            newServer.value = { ip: '', users: {}, adminUser: '', adminPassword: '' };
+            newServer.value = { ip: newServer.value.ip, users: { [newServer.value.adminUser]: { tables: ['*'] } }, adminUser: newServer.value.adminUser, adminPassword: newServer.value.adminPassword };
         } else {
             connectionError.value = 'Connection failed. Please check your credentials.';
         }
