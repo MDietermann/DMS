@@ -9,7 +9,9 @@ mod database_handler;
 mod tauri_commands;
 mod ip_factory;
 mod type_caster;
-mod employee;
+
+#[path = "sqlite_handler/mod.rs"]
+mod sqlite_handler;
 
 #[path = "custom_errors/mod.rs"]
 mod custom_errors;

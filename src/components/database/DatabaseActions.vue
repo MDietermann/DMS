@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useDatabaseStore } from '../../stores/database';
-import type { DatabaseType, DatabaseServer } from '../../types/database';
+import type { DatabaseType, DatabaseServer, DatabaseUsers } from '../../types/database';
 import { testDatabaseConnection, validateIpAddress } from '../../utils/database';
 
 const store = useDatabaseStore();
@@ -48,8 +48,20 @@ async function testConnection() {
             };
 
             store.addServer(selectedType.value, { ...newServer.value });
+
+            const users: DatabaseUsers = {
+                [newServer.value.adminUser]: {
+                    password: newServer.value.adminPassword,
+                    tables: ['*'],
+                },
+            };
+
             showAddModal.value = false;
-            newServer.value = { ip: newServer.value.ip, users: { [newServer.value.adminUser]: { tables: ['*'] } }, adminUser: newServer.value.adminUser, adminPassword: newServer.value.adminPassword };
+            newServer.value = {
+                ip: newServer.value.ip,
+                users: users,
+                adminUser: newServer.value.adminUser,
+                adminPassword: newServer.value.adminPassword };
         } else {
             connectionError.value = 'Connection failed. Please check your credentials.';
         }

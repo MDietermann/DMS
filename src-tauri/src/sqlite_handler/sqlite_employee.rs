@@ -1,9 +1,10 @@
-use rusqlite::{params, Connection, Result};
-use crate::{custom_errors::{self, CommandResult, CustomRusqliteErrorType}, database_handler};
+use rusqlite::{params, Connection};
+use crate::custom_errors::{self, CommandResult, CustomRusqliteErrorType};
+use crate::sqlite_handler::sqlite_factory::SqliteFactory;
 
 #[derive(Debug, serde::Serialize, serde::Deserialize)]
 pub struct Employee {
-    id: i32,
+    id: Option<i32>,
     first_name: String,
     last_name: String,
     email: String,
@@ -18,7 +19,7 @@ impl Employee {
 
     pub fn invalid_user() -> Employee {
         Employee {
-            id: -1,
+            id: None,
             first_name: String::new(),
             last_name: String::new(),
             email: String::new(),
@@ -27,22 +28,27 @@ impl Employee {
         }
     }
 
-    pub async fn get_employee_by_id(employee_id: i32) -> Result<Employee> {
-        let connection = Connection::open("dms.db")?;
-        let mut query = connection.prepare("SELECT * FROM employee WHERE id = ?1;")?;
-        let mut person_iter = query.query_map(params![employee_id], |row| {
+    pub async fn get_employee_by_id(employee_id: i32) -> CommandResult<Employee, CustomRusqliteErrorType> {
+        let db_connection = Connection::open("dms.db")?;
+
+        let mut query = db_connection.prepare("SELECT * FROM employee WHERE id = ?1;")?;
+        let mut employee_iter = query.query_map([employee_id], |row| {
             Ok(Employee {
                 id: row.get(0)?,
                 first_name: row.get(1)?,
                 last_name: row.get(2)?,
                 email: row.get(3)?,
                 position: row.get(4)?,
-                password: row.get(5)?
+                password: row.get(5)?,
             })
         })?;
 
-        let person = person_iter.next().unwrap();
-        return person;
+        let employee = match employee_iter.next().transpose()? {
+            Some(employee) => employee,
+            None => return Err(custom_errors::get_custom_rusqlite_errors(None)),
+        };
+
+        Ok(employee)
     }
 
     pub async fn add_employee(&self) -> CommandResult<(), CustomRusqliteErrorType> {
@@ -73,12 +79,13 @@ impl Employee {
         Ok(())
     }
 
-    pub async fn get_all_employees() -> Result<Vec<Employee>> {
-        let conn = database_handler::get_connection().await?;
-        let mut stmt = conn.prepare("SELECT * FROM employee;")?;
-
+    pub async fn get_all_employees(factory: &SqliteFactory, query: &str) -> CommandResult<Vec<Employee>, CustomRusqliteErrorType> {
+        let connection = factory.get_connection().await?;
+        let mut stmt = connection.prepare(query)?;
         let mut employees = Vec::new();
-        let mut employee_iter = stmt.query([])?;
+        let mut employee_iter = stmt.query([
+            factory.table.as_str(),
+        ])?;
         while let Some(row) = employee_iter.next()? {
             employees.push(Employee {
                 id: row.get(0)?,

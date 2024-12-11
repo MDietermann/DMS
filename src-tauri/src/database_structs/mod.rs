@@ -1,4 +1,4 @@
-mod database_structure;
+pub mod database_structure;
 mod database_server;
 mod database_group;
 mod database_user;
