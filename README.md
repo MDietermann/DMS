@@ -1,7 +1,11 @@
 
 # DMS - Database Management System
 
+Table of Content
+---
+
 - [DMS - Database Management System](#dms---database-management-system)
+  - [Table of Content](#table-of-content)
   - [Generelles](#generelles)
   - [Programmiersprachen und Frameworks](#programmiersprachen-und-frameworks)
     - [Rust](#rust)
@@ -15,6 +19,8 @@
   - [Funktionen](#funktionen)
     - [Mindestanforderungen](#mindestanforderungen)
     - [Best Case](#best-case)
+
+![alt text](src/assets/dms-logo.jpg)
 
 ## Generelles
 Das **DMS** - kurz für **D**atabase **M**anagement **S**ystem - ist ein zentrales HUB, um Datenbanken zu verwalten, Daten aus Tabellen in *JSON* oder *CSV* zu exportieren oder Tabellen mit *JSON* oder *CSV* Dateien zu befüllen.
