@@ -20,7 +20,7 @@ Table of Content
     - [Mindestanforderungen](#mindestanforderungen)
     - [Best Case](#best-case)
 
-![alt text](src/assets/dms-logo.jpg)
+![alt text](https://github.com/MDietermann/DMS/blob/master/src/assets/dms-logo.jpg)
 
 ## Generelles
 Das **DMS** - kurz für **D**atabase **M**anagement **S**ystem - ist ein zentrales HUB, um Datenbanken zu verwalten, Daten aus Tabellen in *JSON* oder *CSV* zu exportieren oder Tabellen mit *JSON* oder *CSV* Dateien zu befüllen.
