@@ -80,11 +80,11 @@ Mit seinem *grid-basierten* Layout-System und einer Vielzahl von UI-Komponenten 
 ## Funktionen
 
 ### Mindestanforderungen
-Das **DMS** soll *mindestens* die Möglichkeit bieten, Datenbankverbindungen in einer internen SQLite-Datenbank zu speichern und von dort abzurufen.
+Das **DMS** soll die Möglichkeit bieten, Datenbankverbindungen in einer internen SQLite-Datenbank zu speichern und von dort abzurufen.
 
-Es soll *mindestens* in der Lage sein, von einer gespeicherten MySQL-Datenbank Daten einer Tabelle *auszulesen*, als *JSON* oder *CSV* zu *exportieren* und auf einen definierten Ort auf dem Gerät zu *speichern*.
+Dazu soll es in der Lage sein, von einer gespeicherten MySQL-Datenbank Daten einer Tabelle *auszulesen*, als *JSON* oder *CSV* zu *exportieren* und auf einen definierten Ort auf dem Gerät zu *speichern*.
 
-Es soll *mindestens* die Fähigkeit besitzen, *JSON* und *CSV* Dateien aus einem definierten Ort zu *importieren* und die dort gespeicherten Daten in eine ausgewählte Tabelle korrekt zu übertragen.
+Ebenfalls sollte es die Fähigkeit besitzen, *JSON* und *CSV* Dateien aus einem definierten Ort zu *importieren* und die dort gespeicherten Daten in eine ausgewählte Tabelle korrekt zu übertragen.
 
 ### Best Case
 Im Idealfall ist das **DMS** in der Lage, die [Mindestanforderungen](#mindestanforderungen) zu erfüllen.
