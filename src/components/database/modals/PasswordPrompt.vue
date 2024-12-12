@@ -29,7 +29,6 @@ function verifyPassword() {
         error.value = '';
         if (password.value === props.correctPassword) {
             emit('showPassword');
-        } else {
             emit('verified');
         }
         emit('close');

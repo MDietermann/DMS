@@ -9,7 +9,7 @@ import { dbMock } from "../mock/db-mock";
 import { ref, watch } from "vue";
 
 const employeeStore = useEmployeeStore();
-const isLoggedIn = ref(true);
+const isLoggedIn = ref(false);
 
 watch(
     () => employeeStore.isLoggedIn,

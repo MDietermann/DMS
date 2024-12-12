@@ -9,7 +9,7 @@ pub struct DatabaseServer{
 }
 
 impl DatabaseServer {
-    pub fn new(ip: String, users: DatabaseUser, admin_user: String, admin_password: String) -> DatabaseGroup {
+    pub fn new(ip: String, users: DatabaseUser, admin_user: String, admin_password: String) -> DatabaseServer {
         DatabaseServer { ip, users, admin_user, admin_password }
     }
 

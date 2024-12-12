@@ -1,6 +1,5 @@
-use rusqlite::{params, Connection};
+use rusqlite::{params, Connection, Row};
 use crate::custom_errors::{self, CommandResult, CustomRusqliteErrorType};
-use crate::sqlite_handler::sqlite_factory::SqliteFactory;
 
 #[derive(Debug, serde::Serialize, serde::Deserialize)]
 pub struct Employee {
@@ -79,24 +78,14 @@ impl Employee {
         Ok(())
     }
 
-    pub async fn get_all_employees(factory: &SqliteFactory, query: &str) -> CommandResult<Vec<Employee>, CustomRusqliteErrorType> {
-        let connection = factory.get_connection().await?;
-        let mut stmt = connection.prepare(query)?;
-        let mut employees = Vec::new();
-        let mut employee_iter = stmt.query([
-            factory.table.as_str(),
-        ])?;
-        while let Some(row) = employee_iter.next()? {
-            employees.push(Employee {
-                id: row.get(0)?,
-                first_name: row.get(1)?,
-                last_name: row.get(2)?,
-                email: row.get(3)?,
-                position: row.get(4)?,
-                password: row.get(5)?,
-            });
-        }
-
-        Ok(employees)
+    pub fn from_row(row: &Row) -> rusqlite::Result<Employee> {
+        Ok(Employee {
+            id: row.get(0)?,
+            first_name: row.get(1)?,
+            last_name: row.get(2)?,
+            email: row.get(3)?,
+            position: row.get(4)?,
+            password: row.get(5)?
+        })
     }
 }

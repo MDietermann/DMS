@@ -1,6 +1,6 @@
 mod custom_rusqlite_errors;
 use rusqlite::Error;
-use custom_rusqlite_errors::CustomRusqliteError;
+pub use custom_rusqlite_errors::CustomRusqliteError;
 
 pub fn get_custom_rusqlite_errors(error: Option<Error>) -> CustomRusqliteError {
     match error {

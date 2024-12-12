@@ -18,6 +18,7 @@ const store = useDatabaseStore();
 const showEditModal = ref(false);
 const showPasswordPrompt = ref(false);
 const showPassword = ref(false);
+const passwordVerified = ref(false);
 
 function handleDelete() {
     if (confirm('Are you sure you want to delete this user?')) {
@@ -26,16 +27,30 @@ function handleDelete() {
 }
 
 function handlePasswordVerified() {
-    showPasswordPrompt.value = false;
-    showEditModal.value = true;
+    passwordVerified.value = true
 }
 
 function togglePasswordVisibility() {
     if (!showPassword.value) {
         showPasswordPrompt.value = true;
     } else {
+
         showPassword.value = false;
     }
+}
+
+function handleShowEditModal() {
+    console.log(passwordVerified.value);
+    if (passwordVerified.value) {
+        showEditModal.value = true;
+    } else {
+        showPasswordPrompt.value = true;
+    }
+}
+
+function handleCloseEditModal() {
+    showEditModal.value = false;
+    passwordVerified.value = false;
 }
 </script>
 
@@ -45,7 +60,7 @@ function togglePasswordVisibility() {
             <div class="flex justify-between items-center mb-3">
                 <h3 class="card-title m-0">{{ username }}</h3>
                 <div class="flex gap-2">
-                    <button class="btn btn-outline-primary btn-sm" @click="showPasswordPrompt = true">
+                    <button class="btn btn-outline-primary btn-sm" @click="handleShowEditModal">
                         <i class="bi bi-pencil"></i>
                     </button>
                     <button v-if="isAdmin" class="btn btn-outline-danger btn-sm" @click="handleDelete">
@@ -66,7 +81,7 @@ function togglePasswordVisibility() {
         </div>
 
         <UserEditModal v-if="showEditModal" :username="username" :user-data="userData" :database-type="databaseType"
-            :server-ip="serverIp" @close="showEditModal = false" />
+            :server-ip="serverIp" @close="handleCloseEditModal" />
 
         <PasswordPrompt v-if="showPasswordPrompt" :username="username" :correct-password="userData.password"
             :server-ip="serverIp" :database-type="databaseType" @verified="handlePasswordVerified"

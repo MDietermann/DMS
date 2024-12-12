@@ -1,56 +1,63 @@
 use rusqlite::Connection;
-use crate::custom_errors::{self, CommandResult, CustomRusqliteErrorType};
+use crate::custom_errors::{ CommandResult, CustomRusqliteError };
 use tokio::sync::RwLock;
-
+use tokio::task;
+use std::sync::Arc;
 use super::Employee;
 use crate::database_structs::database_structure::DatabaseStructure;
 
 pub struct SqliteFactory {
     host: String,
     pub table: String,
-    conn: RwLock<Connection>
+    conn: Arc<RwLock<Connection>>,
 }
 
 pub enum ResultType {
     Employee(Employee),
-    DatabaseStructure(DatabaseStructure)
+    DatabaseStructure(DatabaseStructure),
 }
 
 impl SqliteFactory {
     pub fn new(table: String, host: Option<String>) -> SqliteFactory {
-        SqliteFactory {
-            host: "dms.db".to_string(),
-            table,
-            conn: RwLock::new(Connection::open(host.unwrap().to_string()).unwrap())
-        }
+        let host = host.unwrap_or_else(|| "dms.db".to_string());
+        let conn = match Connection::open(&host) {
+            Ok(conn) => Arc::new(RwLock::new(conn)),
+            Err(_) => {
+                // Handle error or provide a fallback connection
+                Arc::new(RwLock::new(Connection::open_in_memory().unwrap())) // Placeholder
+            }
+        };
+        SqliteFactory { host, table, conn }
     }
 
-    pub async fn get_connection(&self) -> CommandResult<Connection, CustomRusqliteErrorType> {
-        let connection = self.conn.read().await;
-        match connection {
-            Ok(connection.as_ref()) => {
-                Ok(connection.clone())
-            }
-            Err(error) => {
-                Err(custom_errors::get_custom_rusqlite_errors(Some(error)))
-            }
-        }
+    pub async fn get_connection(&self) -> CommandResult<Arc<RwLock<Connection>>, CustomRusqliteError> {
+        Ok(self.conn.clone())
     }
 
-    pub async fn get_all(&self) -> CommandResult<Vec<ResultType>, CustomRusqliteErrorType> {
-        let query = "SELECT * FROM ?1";
-        match &self.table {
-            table if table == &"employee".to_string() => {
-                let employees = Employee::get_all_employees(self, query).await?;
-                let result = employees.into_iter().map(ResultType::Employee).collect();
-                Ok(result)
-            }
-            table if table == &"database_structure".to_string() => {
-                Ok(Vec::new())
-            }
-            _ => {
-                Err(custom_errors::get_custom_rusqlite_errors(None))
-            }
-        }
+    pub async fn get_all(&self) -> CommandResult<Vec<ResultType>, CustomRusqliteError> {
+        let conn = self.conn.clone();
+
+
+        // Use block_in_place to run blocking code
+        let result = task::block_in_place(move || {
+            let conn = conn.read().unwrap(); // Move the RwLockReadGuard into the closure
+            let table = &self.table;
+            let query = format!("SELECT * FROM {}", table);
+
+            // Prepare the query
+            let mut stmt = conn.prepare(&query).expect("Failed to prepare query");
+            let result_iter = stmt.query_map([], |row| Employee::from_row(row)).expect("Failed to execute query");
+
+            // Collect results into a vector
+            let result: Vec<ResultType> = result_iter
+                .filter_map(|e| e.ok().map(ResultType::Employee))
+                .collect();
+
+            // Return the result
+            Ok(result)
+        });
+
+        // Explicit type annotation in map_err
+        result.map_err(|e: std::io::Error| CustomRusqliteError::DatabaseError(format!("Blocking task failed: {}", e)))
     }
 }

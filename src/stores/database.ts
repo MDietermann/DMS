@@ -40,6 +40,9 @@ export const useDatabaseStore = defineStore('database', () => {
         const database = databases.value.databases.find(db => db.type === databaseType);
         if (database) {
             database.servers.push(server);
+        } else {
+            addDatabase(databaseType);
+            addServer(databaseType, server);
         }
     }
 
@@ -100,3 +103,4 @@ export const useDatabaseStore = defineStore('database', () => {
         updateUser,
     };
 });
+

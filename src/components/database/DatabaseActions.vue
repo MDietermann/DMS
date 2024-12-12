@@ -47,6 +47,7 @@ async function testConnection() {
                 tables: ['*'],
             };
 
+            console.log(selectedType.value, newServer.value);
             store.addServer(selectedType.value, { ...newServer.value });
 
             const users: DatabaseUsers = {
