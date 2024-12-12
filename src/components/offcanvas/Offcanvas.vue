@@ -39,7 +39,7 @@ const employeeStore = useEmployeeStore()
             <div>
                 <hr>
                 <div class="btn-group w-100" role="group" aria-label="Basic outlined example">
-                    <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" @click="employeeStore.logout" class="btn btn-success">Benutzer wechseln</button>
+                    <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" @click="employeeStore.logout" class="btn btn-outline-danger">Ausloggen</button>
                 </div>
             </div>
         </div>

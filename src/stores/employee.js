@@ -26,6 +26,7 @@ export const useEmployeeStore = defineStore("employee", {
                 last_name: employee.last_name,
                 email: employee.email,
                 position: employee.position,
+                is_admin: employee.is_admin
             };
             return { code: 200 };
         },

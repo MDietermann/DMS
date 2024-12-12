@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import Section from '../components/section/Section.vue';
+import { invoke } from '@tauri-apps/api/core'
+
 </script>
 
 <template>
-    <Section title="Add User">
-        <button type="button" class="btn btn-primary">Add User</button>
-    </Section>
+    
 </template>
 
 <style scoped lang="css">
