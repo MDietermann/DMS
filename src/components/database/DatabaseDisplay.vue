@@ -3,8 +3,6 @@ import DatabaseTypeSection from './DatabaseTypeSection.vue';
 import { useDatabaseStore } from '../../stores/database';
 import DatabaseActions from './DatabaseActions.vue';
 import SearchBar from '../search/SearchBar.vue';
-import { tsStructure } from '../../mock/db-mock';
-import { invoke } from '@tauri-apps/api/core';
 
 const store = useDatabaseStore();
 store.fetchDatabaseData();
@@ -16,10 +14,8 @@ store.fetchDatabaseData();
         <SearchBar />
         <DatabaseActions />
         <div class="space-y-8">
-            <DatabaseTypeSection v-for="dbGroup in store.searchResults" :key="dbGroup.type" :database-group="dbGroup" />
+            <DatabaseTypeSection v-for="dbGroup in store.searchResults" :key="dbGroup.database_type" :database-group="dbGroup" />
         </div>
         <button class="btn btn-primary" @click="store.fetchDatabaseData">Refresh</button>
-        <button class="btn btn-primary" @click="store.addDatabaseData(tsStructure)">Import Mock</button>
-        <button class="btn btn-primary" @click="invoke('create_database')">Generate Databases</button>
     </div>
 </template>

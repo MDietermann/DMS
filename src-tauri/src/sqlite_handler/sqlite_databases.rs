@@ -5,59 +5,59 @@ use std::collections::HashMap;
 // Models definieren
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DatabaseType {
-    pub id: i32,
-    pub name: String,
+    id: i32,
+    name: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DatabaseServer {
-    pub id: i32,
-    pub ip: String,
-    pub database_type_id: i32,
+    id: i32,
+    ip: String,
+    database_type_id: i32,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DatabaseUser {
-    pub id: i32,
-    pub username: String,
-    pub password: String,
-    pub database_server_id: i32,
+    id: i32,
+    username: String,
+    password: String,
+    database_server_id: i32,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Table {
-    pub id: i32,
-    pub name: String,
+    id: i32,
+    name: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UserTableMapping {
-    pub id: i32,
-    pub user_id: i32,
-    pub table_id: i32,
+    id: i32,
+    user_id: i32,
+    table_id: i32,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TsStructure {
-    pub database_type: String,
-    pub servers: Vec<ServerInfo>,
+    database_type: String,
+    servers: Vec<ServerInfo>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ServerInfo {
-    pub ip: String,
-    pub users: HashMap<String, UserInfo>,
+    ip: String,
+    users: HashMap<String, UserInfo>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UserInfo {
-    pub password: String,
-    pub tables: Vec<String>,
+    password: String,
+    tables: Vec<String>,
 }
 
 // Controller Implementierung
 pub struct DbController {
-    pub connection: Connection,
+    connection: Connection,
 }
 
 impl DbController {

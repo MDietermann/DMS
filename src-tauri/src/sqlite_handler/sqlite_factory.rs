@@ -27,7 +27,7 @@ impl SqliteFactory {
     }
 
     /// Create a new connection to the database
-    pub async fn get_connection(&self) -> CommandResult<Connection, CustomRusqliteError> {
+    async fn get_connection(&self) -> CommandResult<Connection, CustomRusqliteError> {
         Connection::open(&self.host).map_err(|e| CustomRusqliteError::DatabaseError(format!("Failed to open connection: {}", e)))
     }
 
