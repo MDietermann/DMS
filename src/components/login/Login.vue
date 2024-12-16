@@ -76,9 +76,6 @@ const validateLogin = () => {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url(../../assets/Banniere-blog-yggdrasil.png);
-    background-position: 50%;
-    background-size: cover;
     z-index: 0;
 }
 
@@ -98,7 +95,7 @@ const validateLogin = () => {
 
 .header div {
     float: left;
-    color: #fff;
+    color: rgba(0, 0, 0, 0.3);
     font-family: 'Exo', sans-serif;
     font-size: 35px;
     font-weight: 200;
@@ -122,9 +119,9 @@ const validateLogin = () => {
     width: 250px;
     height: 30px;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 2px;
-    color: #fff;
+    color: rgba(0, 0, 0, 0.3);
     font-family: 'Exo', sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -135,9 +132,9 @@ const validateLogin = () => {
     width: 250px;
     height: 30px;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 2px;
-    color: #fff;
+    color: rgba(0, 0, 0, 0.3);
     font-family: 'Exo', sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -148,11 +145,11 @@ const validateLogin = () => {
 .login input[type=button] {
     width: 260px;
     height: 35px;
-    background: #fff;
-    border: 1px solid #fff;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.3);
     cursor: pointer;
     border-radius: 2px;
-    color: #a18d6c;
+    color: #fff;
     font-family: 'Exo', sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -170,12 +167,12 @@ const validateLogin = () => {
 
 .login input[type=text]:focus {
     outline: none;
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(rgba(0, 0, 0, 0.9));
 }
 
 .login input[type=password]:focus {
     outline: none;
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(rgba(0, 0, 0, 0.9));
 }
 
 .login input[type=button]:focus {
@@ -183,10 +180,10 @@ const validateLogin = () => {
 }
 
 ::-webkit-input-placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(0, 0, 0, 0.3);
 }
 
 ::-moz-input-placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(0, 0, 0, 0.3);
 }
 </style>

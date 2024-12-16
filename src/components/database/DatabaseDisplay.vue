@@ -6,6 +6,7 @@ import SearchBar from '../search/SearchBar.vue';
 
 const store = useDatabaseStore();
 store.fetchDatabaseData();
+console.log(store.searchResults)
 </script>
 
 <template>
@@ -14,7 +15,7 @@ store.fetchDatabaseData();
         <SearchBar />
         <DatabaseActions />
         <div class="space-y-8">
-            <DatabaseTypeSection v-for="dbGroup in store.searchResults" :key="dbGroup.database_type" :database-group="dbGroup" />
+            <DatabaseTypeSection v-for="dbGroup in store.searchResults" :key="dbGroup.database_type" :database-structure="dbGroup" />
         </div>
         <button class="btn btn-primary" @click="store.fetchDatabaseData">Refresh</button>
     </div>
