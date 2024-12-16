@@ -32,7 +32,7 @@ Entwickelt wurde das **DMS** als *Cross-Plattform Webapplikation* mit **[Tauri](
 Das Backend ist mit **[Rust](https://www.rust-lang.org)** entwickelt, das Frontend mit **HTML**, **CSS** und **TypeScript** über das **[Vue.js](https://vuejs.org)** Framework entwickelt. Hierbei wurde für das Styling eine Kombination aus **[Bootstrap](https://getbootstrap.com)** und **[TailwindCSS](https://tailwindcss.com)** verwendet.
 
 ### Rust
-**Rust** ist eine systemspezifische Programmiersprache, die sich auf *Sicherheit*, *Performance* und *Parallelität* konzentriert. Sie bietet *Speicher- und Thread-Sicherheit* ohne Garbage Collection, was sie besonders für *leistungsintensive* Anwendungen geeignet macht.
+**Rust** ist eine systemspezifische Programmiersprache, die sich auf *Sicherheit*, *Performance* und *Parallelität* konzentriert. Sie bietet *Speicher- und Thread-Sicherheit*[^1] ohne Garbage Collection, was sie besonders für *leistungsintensive* Anwendungen geeignet macht.
 
 **Rust** wird oft in Bereichen wie *WebAssembly*, *Embedded* *Systems* und Softwareentwicklung auf *niedriger* *Ebene* verwendet.
 
