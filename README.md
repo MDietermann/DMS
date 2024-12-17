@@ -1,96 +1,149 @@
+# DMS - Datenbank-Management-System
 
-# DMS - Database Management System
+![DMS Logo](https://github.com/MDietermann/DMS/blob/master/src/assets/dms-logo.jpg)
 
-Table of Content
+**DMS** (*Datenbank-Management-System*) ist ein vielseitiges Tool zur Verwaltung von Datenbanken, zum Exportieren von Tabellendaten in **JSON** oder **CSV** sowie zum nahtlosen Importieren von **JSON**- oder **CSV**-Dateien in vorhandene Tabellen. Entwickelt für **Datenbankunabhängigkeit**, unterstützt DMS mehrere Datenbanksysteme, darunter:
+
+- **MySQL**
+- **SQL Server**
+- **MariaDB**
+- **PostgreSQL**
+- **SQLite**
+
 ---
 
-- [DMS - Database Management System](#dms---database-management-system)
-  - [Table of Content](#table-of-content)
-  - [Generelles](#generelles)
-  - [Programmiersprachen und Frameworks](#programmiersprachen-und-frameworks)
+## Inhaltsverzeichnis
+
+- [DMS - Datenbank-Management-System](#dms---datenbank-management-system)
+  - [Inhaltsverzeichnis](#inhaltsverzeichnis)
+  - [Übersicht](#übersicht)
+  - [Funktionen](#funktionen)
+    - [Kernanforderungen](#kernanforderungen)
+    - [Optimaler Funktionsumfang](#optimaler-funktionsumfang)
+  - [Verwendete Technologien](#verwendete-technologien)
     - [Rust](#rust)
     - [Tauri](#tauri)
-    - [HTML (HyperText Markup Language)](#html-hypertext-markup-language)
-    - [CSS (Cascading Style Sheets)](#css-cascading-style-sheets)
-    - [JavaScript / TypeScript](#javascript--typescript)
     - [Vue.js](#vuejs)
-    - [Bootstrap](#bootstrap)
-    - [TailwindCSS](#tailwindcss)
-  - [Funktionen](#funktionen)
-    - [Mindestanforderungen](#mindestanforderungen)
-    - [Best Case](#best-case)
+    - [HTML, CSS und TypeScript](#html-css-und-typescript)
+    - [Bootstrap \& TailwindCSS](#bootstrap--tailwindcss)
+    - [Voraussetzungen](#voraussetzungen)
+    - [Installationsschritte](#installationsschritte)
+  - [Warum DMS?](#warum-dms)
+  - [Erste Schritte](#erste-schritte)
 
-![alt text](https://github.com/MDietermann/DMS/blob/master/src/assets/dms-logo.jpg)
+---
 
-## Generelles
-Das **DMS** - kurz für **D**atabase **M**anagement **S**ystem - ist ein zentrales HUB, um Datenbanken zu verwalten, Daten aus Tabellen in *JSON* oder *CSV* zu exportieren oder Tabellen mit *JSON* oder *CSV* Dateien zu befüllen.
+## Übersicht
 
-Ein Vorteil des **DMS** ist die Unabhängigkeit des Datenbanksystems - egal ob *MySQL*, *SQL-Server*, *MariaDB*, *PostgreSQL* oder *SQLite*.
+**DMS** bietet eine zentrale Anlaufstelle für die Datenbankverwaltung und ermöglicht es Anwendern, wichtige Aufgaben einfach auszuführen:
 
-## Programmiersprachen und Frameworks
-Entwickelt wurde das **DMS** als *Cross-Plattform Webapplikation* mit **[Tauri](https://tauri.app)**.
-Das Backend ist mit **[Rust](https://www.rust-lang.org)** entwickelt, das Frontend mit **HTML**, **CSS** und **TypeScript** über das **[Vue.js](https://vuejs.org)** Framework entwickelt. Hierbei wurde für das Styling eine Kombination aus **[Bootstrap](https://getbootstrap.com)** und **[TailwindCSS](https://tailwindcss.com)** verwendet.
+- **Daten exportieren**: Speichern von Tabellendaten als **JSON** oder **CSV** an einem gewünschten Speicherort.
+- **Daten importieren**: Präziser Import von **JSON**- oder **CSV**-Dateien in vorhandene Tabellen.
+- **Cross-Datenbank-Kompatibilität**: Mehrere Datenbanksysteme mühel- und nahtlos verwalten.
+- **Benutzer- und Berechtigungsverwaltung** *(Best-Case-Szenario)*: Benutzerdefinierter Zugriff auf Datenbankverbindungen.
 
-### Rust
-**Rust** ist eine systemspezifische Programmiersprache, die sich auf *Sicherheit*, *Performance* und *Parallelität* konzentriert. Sie bietet *Speicher- und Thread-Sicherheit*[^1] ohne Garbage Collection, was sie besonders für *leistungsintensive* Anwendungen geeignet macht.
+Ob Entwickler, Datenbankadministrator oder Daten-Enthusiast – **DMS** vereinfacht Datenbankoperationen durch ein modernes, leistungsstarkes Design.
 
-**Rust** wird oft in Bereichen wie *WebAssembly*, *Embedded* *Systems* und Softwareentwicklung auf *niedriger* *Ebene* verwendet.
-
-### Tauri
-**Tauri** ist ein *Open-Source-Framework* zur Erstellung von *plattformübergreifenden* Desktop-Anwendungen mit Web-Technologien wie **HTML**, **CSS** und **JavaScript** bzw. **TypeScript**. Es ermöglicht Entwicklern, mit einer nativen *Rust-basierten Backend-Logik* zu interagieren, um die Leistung und Sicherheit von Desktop-Anwendungen zu optimieren.
-
-**Tauri-Anwendungen** sind *ressourcenschonend* und können für **Windows**, **macOS** und **Linux** gebaut werden.
-
-### HTML (HyperText Markup Language)
-**HTML** ist die *Standard-Auszeichnungssprache* für das *Erstellen* und *Strukturieren* von Inhalten auf *Webseiten*. Sie verwendet *Tags*, um verschiedene Elemente wie Überschriften, Absätze, Listen, Links und Medien zu definieren.
-
-**HTML** bildet das *Grundgerüst* einer Webseite und ist unerlässlich für die *Darstellung* von Inhalten im Web.
-
-### CSS (Cascading Style Sheets)
-**CSS** wird verwendet, um das visuelle *Design* und *Layout* von Webseiten zu *definieren* und zu *steuern*. Es ermöglicht Entwicklern, das *Aussehen* von HTML-Elementen zu verändern, einschließlich der *Farben*, *Schriftarten*, *Abstände* und *Positionen*.
-
-**CSS** trägt dazu bei, das Design einer Webseite *ansprechend* und *benutzerfreundlich* zu gestalten, indem es das HTML mit *Styles* trennt.
-
-### JavaScript / TypeScript
-**JavaScript** ist eine dynamische *Programmiersprache*, die es ermöglicht, Webseiten *interaktiv* zu gestalten. Mit JavaScript können Elemente auf der Seite in *Echtzeit* geändert, *Animationen* erstellt und *Benutzereingaben* verarbeitet werden.
-
-Es ist eine der grundlegenden Technologien für die Entwicklung moderner Webanwendungen und ermöglicht *serverseitige* sowie *clientseitige* Programmierung.
-
-**TypeScript** ist eine von *Microsoft* entwickelte, *statisch* *typisierte* *Obermenge* von **JavaScript**, die die Verwendung von *Typen* und moderne *JavaScript-Funktionen* ermöglicht. Es fügt **JavaScript** die Möglichkeit hinzu, Variablen, Funktionen und Objekte *explizit* mit *Typen* zu deklarieren, was hilft, *Fehler* *frühzeitig* im Entwicklungsprozess zu *erkennen* und die *Wartbarkeit* von Code zu *verbessern*.
-
-**TypeScript** wird in **JavaScript** *transpiliert*, was bedeutet, dass der TypeScript-Code in *regulären* JavaScript-Code *umgewandelt* wird, der in *allen* *gängigen* *Browsern* und *Umgebungen* ausgeführt werden kann.
-
-### Vue.js
-**Vue.js** ist ein *progressives JavaScript-Framework*, das zur Erstellung von *Benutzeroberflächen* und *Single-Page-Anwendungen* verwendet wird. Es verfolgt einen *komponentenbasierten* Ansatz, bei dem die Benutzeroberfläche in *wiederverwendbare*, *isolierte* Komponenten unterteilt wird.
-
-**Vue.js** ist bekannt für seine *einfache Lernkurve*, *flexible Integration* in bestehende Projekte und *leistungsstarke Reaktivitätsmechanismen*, die eine effiziente *Aktualisierung* der UI bei *Änderungen* im Zustand ermöglichen.
-
-Im **DMS** wurde **Vue.js** mit der *Composition API* verwendet.
-
-### Bootstrap
-**Bootstrap** ist ein populäres *Open-Source-Framework* für die Entwicklung von *responsiven* und *mobilen* Webseiten. Es bietet eine Sammlung von vorgefertigten *HTML-, CSS- und JavaScript-Komponenten*, die Entwicklern helfen, schnell *ansprechende* und *funktionale* Webanwendungen zu erstellen.
-
-Mit seinem *grid-basierten* Layout-System und einer Vielzahl von UI-Komponenten wie *Buttons*, *Navigation* und *Modals* erleichtert Bootstrap die *Gestaltung* von Webseiten, die auf *verschiedenen Geräten* gut aussehen und funktionieren.
-
-### TailwindCSS
-**TailwindCSS** ist ein *utility-first CSS-Framework*, das eine große Sammlung von *vordefinierten* *CSS-Klassen* bietet, um das *Styling* von HTML-Elementen direkt *im Markup* vorzunehmen. Im Gegensatz zu traditionellen CSS-Frameworks, bei denen vorgefertigte Komponenten verwendet werden, ermöglicht **TailwindCSS** eine *hohe* *Flexibilität* und *Anpassbarkeit*, indem es Entwicklern erlaubt, spezifische *Designentscheidungen* direkt in der HTML-Datei zu treffen.
-
-**Tailwind** fördert eine *schnelle* *Entwicklung* und *sauberen* *Code*, da es über eine konfigurierbare* Build-Pipeline* verfügt, die nicht benötigte CSS-Klassen entfernt.
+---
 
 ## Funktionen
 
-### Mindestanforderungen
-Das **DMS** soll die Möglichkeit bieten, Datenbankverbindungen in einer internen SQLite-Datenbank zu speichern und von dort abzurufen.
+### Kernanforderungen
+- **Datenbankverbindungen** intern über SQLite speichern und verwalten.
+- Tabellendaten aus einer verbundenen MySQL-Datenbank extrahieren und als **JSON** oder **CSV** exportieren.
+- Daten aus **JSON**- oder **CSV**-Dateien in ausgewählte Tabellen importieren.
+- Dateien an einem angegebenen Ort auf dem Gerät speichern und laden.
 
-Dazu soll es in der Lage sein, von einer gespeicherten MySQL-Datenbank Daten einer Tabelle *auszulesen*, als *JSON* oder *CSV* zu *exportieren* und auf einen definierten Ort auf dem Gerät zu *speichern*.
+### Optimaler Funktionsumfang
+Im optimalen Zustand bietet **DMS**:
+- Unterstützung mehrerer Datenbanksysteme: **MySQL**, **MariaDB**, **PostgreSQL**, **SQL Server** und **SQLite**.
+- Benutzerdefinierte Speicherung von Datenbankverbindungen inklusive rollenbasierter Berechtigungen.
+- Direkte Datenbankverwaltung über die DMS-Oberfläche (Tabellen erstellen, bearbeiten und löschen).
+- Eine intuitive und benutzerfreundliche Oberfläche für erweiterte Import-/Export-Workflows.
 
-Ebenfalls sollte es die Fähigkeit besitzen, *JSON* und *CSV* Dateien aus einem definierten Ort zu *importieren* und die dort gespeicherten Daten in eine ausgewählte Tabelle korrekt zu übertragen.
+---
 
-### Best Case
-Im Idealfall ist das **DMS** in der Lage, die [Mindestanforderungen](#mindestanforderungen) zu erfüllen.
-Zudem soll es in der Lage sein, diese nicht nur für *MySQL*, sondern auch für weitere Datenbankanbieter,
-also *MariaDB*, *PostgreSQL*, *SQL-Server* sowie *SQLite* zu erfüllen.
+## Verwendete Technologien
 
-Es sollte in der Lage sein, verschiedene Nutzer und deren Berechtigung zu verwalten, sodass jeder Nutzer auf seine gespeicherten Datenbankverbindungen oder für ihn freigegebene Verbindungen Zugriff besitzt und diese bearbeiten oder entfernen kann.
+### Rust
+[Rust](https://www.rust-lang.org) ist eine leistungsstarke, systemnahe Programmiersprache, die sich auf **Sicherheit**, **Geschwindigkeit** und **Nebenläufigkeit** konzentriert. Dank seiner speichersicheren Eigenschaften und hervorragenden Performance eignet sich Rust ideal für die Backend-Entwicklung.
 
-Das **DMS** soll zudem nicht nur den Import und Export von Daten ermöglichen, sondern eine allgemeine Datenbankverwaltung darbieten, in welcher der Nutzer direkt im Programm Tabellen erstellen, bearbeiten und löschen kann.
+### Tauri
+[Tauri](https://tauri.app) ist ein modernes **plattforübergreifendes** Framework für die Erstellung schlanker Desktop-Anwendungen. Mit **Rust** für das Backend und **Webtechnologien** (HTML, CSS, JavaScript/TypeScript) für das Frontend entstehen ressourceneffiziente Anwendungen für Windows, macOS und Linux.
+
+### Vue.js
+[Vue.js](https://vuejs.org) ist ein progressives **JavaScript-Framework** zur Erstellung dynamischer Benutzeroberflächen. Dank seiner komponentenbasierten Architektur wird Modularität und Wartbarkeit gewährleistet, während die **reaktive** Datenbindung UI-Updates vereinfacht.
+
+**Hinweis**: Die **Composition API** wurde für saubereren und modulareren Code im Frontend verwendet.
+
+### HTML, CSS und TypeScript
+- **HTML**: Strukturierung des Inhalts der Benutzeroberfläche.
+- **CSS**: Verbessert das visuelle Design und sorgt für ein modernes, sauberes Erscheinungsbild.
+- **TypeScript**: Fügt JavaScript statische Typisierung hinzu, was die Codeklarheit, Wartbarkeit und Fehlerminimierung verbessert.
+
+### Bootstrap & TailwindCSS
+- **Bootstrap**: Ein responsives, gridbasiertes CSS-Framework zur schnellen Erstellung benutzerfreundlicher UIs.
+- **TailwindCSS**: Ein **Utility-First-CSS-Framework**, das hochgradig anpassbare und effiziente Styles direkt im Markup ermöglicht.
+
+---
+
+### Voraussetzungen
+1. **Rust** (für das Tauri-Backend)
+   - Rust über [rustup](https://rustup.rs/) installieren:
+     ```sh
+     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+     ```
+
+2. **Node.js** (LTS-Version) und **npm** (Node Package Manager)
+   - Von der [Node.js-Website](https://nodejs.org/) herunterladen und installieren:
+     ```sh
+     # Installation überprüfen:
+     node -v
+     npm -v
+     ```
+
+3. **Tauri CLI**
+   - Tauri-Tools global installieren:
+     ```sh
+     cargo install tauri-cli
+     ```
+
+### Installationsschritte
+1. **Repository klonen**:
+   ```sh
+    git clone https://github.com/MDietermann/DMS.git
+    cd DMS
+   ```
+2. **Abhängigkeiten installieren**: Projektabhängigkeiten mit _npm_ installieren:
+   ```sh
+    npm install
+   ```
+3. **Dev-Modus starten**: Entwicklungsserver starten, um die Anwendung zu testen:
+   ```sh
+    npm run tauri dev
+   ```
+4. **Anwendung erstellen**: Anwendung für die Produktion kompilieren:
+   ```sh
+    npm run tauri build
+   ```
+
+---
+
+## Warum DMS?
+
+- **Datenbankunabhängigkeit**: Mehrere Datenbanktypen verbinden und verwalten ohne Plattformbeschränkungen.
+- **Flexible Datenverwaltung**: **JSON**- oder **CSV**-Daten einfach exportieren und importieren.
+- **Leistungsstark**: Entwickelt mit **Rust** und **Tauri** für Geschwindigkeit, Sicherheit und geringe Ressourcenbelastung.
+- **Benutzerzentriertes Design**: Eine moderne, saubere Oberfläche, die auf Benutzerfreundlichkeit und Flexibilität ausgelegt ist.
+
+---
+
+## Erste Schritte
+
+Um **DMS** zu erkunden, klone das Repository und folge den Anweisungen unter [Installationsschritte](#installationsschritte).
+
+**Mitwirken**: Beiträge sind willkommen! Weitere Details findest du in der Datei `CONTRIBUTING.md`.
+
+---
+
+**DMS** – Vereinfache deine Datenbankverwaltung. 🚀
