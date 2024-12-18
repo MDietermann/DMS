@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useDatabaseStore } from '../stores/database';
-import { useExport } from '../composables/useExport';
-import { useSelections } from '../composables/useSelections';
+import { useExport } from '@/composables/useExport';
+import { useSelections } from '@/composables/useSelections';
 import SelectField from '../components/ui/SelectionField.vue';
 import ExportButton from '../components/ui/CButton.vue';
 import Card from '../components/ui/Card.vue';
@@ -20,10 +20,21 @@ const {
     isValid,
 } = useSelections();
 
+/**
+ * Handles the database export process.
+ *
+ * @param {Object} exportOptions - Export options
+ * @param {string} exportOptions.databaseType - Type of database
+ * @param {string} exportOptions.serverIp - IP address of the server
+ * @param {string} exportOptions.username - Username of the user
+ * @param {string} exportOptions.table - Table name to export
+ * @param {string} exportOptions.exportType - Export format
+ */
 async function handleExport() {
     if (!isValid.value) return;
 
     try {
+        // Call the exportData function with the export options
         await exportData({
             databaseType: selectedDatabase.value,
             serverIp: selectedServer.value,
@@ -32,6 +43,7 @@ async function handleExport() {
             exportType: exportType.value,
         });
     } catch (error) {
+        // Log any errors that occur during the export process
         console.error('Export failed:', error);
     }
 }

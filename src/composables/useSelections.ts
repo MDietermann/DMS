@@ -8,7 +8,7 @@ import type { DatabaseType } from '../types/database';
  * export type.
  * It also provides computed properties for the available servers, users, tables, and whether the selection is valid.
  */
-export function useSelections() {
+export const useSelections = () => {
     const databaseStore = useDatabaseStore();
     /**
      * The selected database type.
