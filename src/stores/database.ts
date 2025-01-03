@@ -3,7 +3,6 @@ import { ref, computed } from 'vue';
 import Fuse from 'fuse.js';
 import type { DatabaseStructure, ServerInfo, UserInfo, DatabaseType } from '../types/database';
 import { invoke } from '@tauri-apps/api/core';
-import { tsStructure } from '../mock/db-mock';
 
 export const useDatabaseStore = defineStore('database', () => {
     const databases = ref<DatabaseStructure[]>([]);
