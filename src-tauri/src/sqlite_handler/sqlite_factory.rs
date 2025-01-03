@@ -1,4 +1,3 @@
-use crate::database_structs::database_structure::DatabaseStructure;
 use crate::custom_errors::{ CommandResult, CustomRusqliteError };
 use rusqlite::Connection;
 use super::Employee;

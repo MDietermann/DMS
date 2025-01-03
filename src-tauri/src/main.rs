@@ -18,9 +18,6 @@ mod sqlite_handler;
 #[path = "custom_errors/mod.rs"]
 mod custom_errors;
 
-#[path ="database_structs/mod.rs"]
-mod database_structs;
-
 #[tokio::main]
 async fn main() {
     tauri::Builder::default()
