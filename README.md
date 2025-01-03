@@ -39,7 +39,7 @@
 
 - **Daten exportieren**: Speichern von Tabellendaten als **JSON** oder **CSV** an einem gewünschten Speicherort.
 - **Daten importieren**: Präziser Import von **JSON**- oder **CSV**-Dateien in vorhandene Tabellen.
-- **Cross-Datenbank-Kompatibilität**: Mehrere Datenbanksysteme mühel- und nahtlos verwalten.
+- **Cross-Datenbank-Kompatibilität**: Mehrere Datenbanksysteme mühe- und nahtlos verwalten.
 - **Benutzer- und Berechtigungsverwaltung** *(Best-Case-Szenario)*: Benutzerdefinierter Zugriff auf Datenbankverbindungen.
 
 Ob Entwickler, Datenbankadministrator oder Daten-Enthusiast – **DMS** vereinfacht Datenbankoperationen durch ein modernes, leistungsstarkes Design.
