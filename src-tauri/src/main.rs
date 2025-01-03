@@ -9,6 +9,9 @@ mod tauri_commands;
 mod ip_factory;
 mod type_caster;
 
+#[path ="enums/mod.rs"]
+mod enums;
+
 #[path ="database_handler/mod.rs"]
 mod database_handler;
 
