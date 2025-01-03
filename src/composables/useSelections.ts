@@ -13,7 +13,7 @@ export const useSelections = () => {
     /**
      * The selected database type.
      */
-    const selectedDatabaseType = ref<DatabaseType>();
+    const selectedDatabaseType = ref<DatabaseType>('mysql');
     /**
      * The selected server IP.
      */

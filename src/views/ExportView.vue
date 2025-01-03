@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useDatabaseStore } from '../stores/database';
-import { useExport } from '../composables/useExport';
+import { useExportDatabase } from '../composables/useExport';
 import { useSelections } from '../composables/useSelections';
 import SelectField from '../components/ui/SelectionField.vue';
 import ExportButton from '../components/ui/CButton.vue';
 import Card from '../components/ui/Card.vue';
 
 const databaseStore = useDatabaseStore();
-const { isExporting, exportTable } = useExport();
+const { isExporting, exportTable } = useExportDatabase();
 const {
     selectedDatabaseType,
     selectedServerIp,
