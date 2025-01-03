@@ -6,7 +6,7 @@ interface Option {
 
 interface Props {
     label: string;
-    modelValue: string;
+    modelValue: string | undefined;
     options: Option[];
     disabled?: boolean;
     placeholder?: string;

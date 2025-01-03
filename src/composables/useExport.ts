@@ -26,7 +26,7 @@ export const useExport = () => {
         table,
         exportType,
     }: {
-        databaseType: string;
+        databaseType: string | undefined;
         serverIp: string;
         username: string;
         table: string;

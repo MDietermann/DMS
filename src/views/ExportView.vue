@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { useDatabaseStore } from '../stores/database';
-import { useExport } from '@/composables/useExport';
-import { useSelections } from '@/composables/useSelections';
+import { useExport } from '../composables/useExport';
+import { useSelections } from '../composables/useSelections';
 import SelectField from '../components/ui/SelectionField.vue';
 import ExportButton from '../components/ui/CButton.vue';
 import Card from '../components/ui/Card.vue';
 
 const databaseStore = useDatabaseStore();
-const { isExporting, exportData } = useExport();
+const { isExporting, exportTable } = useExport();
 const {
-    selectedDatabase,
-    selectedServer,
-    selectedUser,
-    selectedTable,
+    selectedDatabaseType,
+    selectedServerIp,
+    selectedUsername,
+    selectedTableName,
     exportType,
     availableServers,
     availableUsers,
@@ -35,11 +35,11 @@ async function handleExport() {
 
     try {
         // Call the exportData function with the export options
-        await exportData({
-            databaseType: selectedDatabase.value,
-            serverIp: selectedServer.value,
-            username: selectedUser.value,
-            table: selectedTable.value,
+        await exportTable({
+            databaseType: selectedDatabaseType.value,
+            serverIp: selectedServerIp.value,
+            username: selectedUsername.value,
+            table: selectedTableName.value,
             exportType: exportType.value,
         });
     } catch (error) {
@@ -62,7 +62,7 @@ async function handleExport() {
             <div class="space-y-6">
                 <SelectField
                     label="Database Type"
-                    v-model="selectedDatabase"
+                    v-model="selectedDatabaseType"
                     :options="databaseStore.databases.map(db => ({
                         value: db.database_type,
                         label: db.database_type.toUpperCase()
@@ -72,34 +72,34 @@ async function handleExport() {
 
                 <SelectField
                     label="Server"
-                    v-model="selectedServer"
+                    v-model="selectedServerIp"
                     :options="availableServers.map(server => ({
                         value: server.ip,
                         label: server.ip
                     }))"
-                    :disabled="!selectedDatabase"
+                    :disabled="!selectedDatabaseType"
                     placeholder="Select Server"
                 />
 
                 <SelectField
                     label="User"
-                    v-model="selectedUser"
+                    v-model="selectedUsername"
                     :options="availableUsers.map(user => ({
                         value: user,
                         label: user
                     }))"
-                    :disabled="!selectedServer"
+                    :disabled="!selectedServerIp"
                     placeholder="Select User"
                 />
 
                 <SelectField
                     label="Table"
-                    v-model="selectedTable"
+                    v-model="selectedTableName"
                     :options="availableTables.map(table => ({
                         value: table,
                         label: table
                     }))"
-                    :disabled="!selectedUser"
+                    :disabled="!selectedUsername"
                     placeholder="Select Table"
                 />
 
