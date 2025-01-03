@@ -4,7 +4,7 @@ import { invoke } from '@tauri-apps/api/core';
 /**
  * Provides a composable function for exporting a database table.
  */
-export const useExport = () => {
+export const useExportDatabase = () => {
     /**
      * Indicates whether the export is currently in progress.
      */

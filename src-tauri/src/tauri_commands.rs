@@ -1,4 +1,5 @@
 use crate::custom_errors::{ CustomRusqliteError, CommandResult };
+use crate::enums::export_types::ExportType;
 use crate::sqlite_handler::{ Employee, SqliteFactory, ResultType, DbController, TsStructure };
 
 #[tauri::command]
@@ -27,7 +28,6 @@ pub async fn get_all_employees() -> CommandResult<Vec<Employee>, CustomRusqliteE
                 .map(|result_type| match result_type {
                     ResultType::Employee(employee) => employee,
                     _ => {
-                        // You might log or handle invalid rows more specifically here
                         Employee::invalid_user()
                     }
                 })
@@ -69,6 +69,17 @@ pub fn add_to_database(structure: Vec<TsStructure>) -> CommandResult<(), CustomR
         Ok(_) => Ok(()),
         Err(e) => Err(CustomRusqliteError::DatabaseError(format!("Failed to import TS structure: {}", e))),
     }
+}
+
+#[tauri::command]
+async fn export_database_table(
+    database_type: String,
+    server_ip: String,
+    username: String,
+    table: String,
+    export_type: ExportType
+    ) -> Result<(), String> {
+  Ok(())
 }
 
 // #[tauri::command]
