@@ -3,7 +3,6 @@
     windows_subsystem = "windows"
 )]
 
-use sqlite_handler::Employee;
 
 mod tauri_commands;
 mod ip_factory;

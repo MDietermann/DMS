@@ -1,4 +1,4 @@
-use serde::{ser::Serializer, Deserialize, Serialize};
+use serde::{ser::Serializer, Serialize};
 use rusqlite::Error as SqliteError;
 
 #[derive(Debug, thiserror::Error)]
