@@ -14,10 +14,7 @@ const props = defineProps({
 
 const employeeStore = useEmployeeStore()
 const { loggedIn } = storeToRefs(employeeStore)
-watch(() => employeeStore.loggedIn,
-    () => {
-        console.log('isLoggedIn ref changed, do something!')
-    })
+
 </script>
 
 <template>
@@ -26,10 +23,10 @@ watch(() => employeeStore.loggedIn,
             <RouterLink class="navbar-brand" to="/">
                 DMS-System
             </RouterLink>
-            <button v-if="loggedIn" class="btn btn-outline-light me-2" data-bs-toggle="offcanvas"
+            <!-- <button class="btn btn-outline-light me-2" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu" type="button">
                 Menü
-            </button>
+            </button> -->
         </div>
     </nav>
     <Offcanvas :currentRouteName="currentRouteName" />

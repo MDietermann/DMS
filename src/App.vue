@@ -5,8 +5,6 @@ import { onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
-const router = useRouter()
-const employeeStore = useEmployeeStore();
 const currentRouteName = ref("")
 
 onMounted(() => {
@@ -14,18 +12,10 @@ onMounted(() => {
 })
 
 watch(route, (to) => {
-    if (!employeeStore.loggedIn) {
-        router.push('/')
-    }
     currentRouteName.value = to.name
 })
 
-watch(() => employeeStore.loggedIn,
-(newVal) => {
-        if (!newVal) {
-            router.push('/')
-        }
-    })
+
 </script>
 
 <template>
