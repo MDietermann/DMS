@@ -5,8 +5,6 @@
 
 
 mod tauri_commands;
-mod ip_factory;
-mod type_caster;
 
 #[path ="enums/mod.rs"]
 mod enums;
@@ -25,11 +23,9 @@ async fn main() {
     tauri::Builder::default()
         // Register Command with Tauri App
         .invoke_handler(tauri::generate_handler![
-            tauri_commands::login,
-            tauri_commands::get_all_employees,
-            tauri_commands::get_database_data,
-            tauri_commands::add_to_database,
-            tauri_commands::create_database
+            tauri_commands::export_data,
+            tauri_commands::import_data,
+            tauri_commands::test_connection
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

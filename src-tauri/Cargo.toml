@@ -26,3 +26,4 @@ rusqlite = { version = "0.32.1", features = ["bundled"] }
 tokio = { version = "*", features = ["macros"] }
 thiserror = "2"
 anyhow = "1"
+mysql = "*"
